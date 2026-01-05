@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./testimonial.module.css";
 import Image from "next/image";
-import Client1 from "../../../public/Images/client1.png";
+import Client1 from "../../../public/Images/client1.jpeg";
 import Client2 from "../../../public/Images/client2.jpg";
 import Client3 from "../../../public/Images/client3.jpeg";
 import { Row, Col } from "antd";
