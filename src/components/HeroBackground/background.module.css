@@ -1,0 +1,46 @@
+.background_main {
+  /* background-image: url(../../../public//Images/herobackground.jpg); */
+  background: radial-gradient(#1d0270, black);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  margin-top: -2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  margin-top: 10rem;
+  font-size: 68px;
+  font-weight: 800;
+}
+
+.intro {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+@media (max-width: 1030px) {
+  .name {
+    font-size: 54px;
+  }
+
+  .intro {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 770px) {
+  .background_main {
+    height: 90vh;
+  }
+}
+
+@media (max-width: 430px) {
+  .background_main {
+    height: 80vh;
+  }
+  .name {
+    font-size: 42px;
+  }
+}

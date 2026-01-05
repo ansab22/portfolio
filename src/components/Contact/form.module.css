@@ -1,0 +1,33 @@
+.label {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.input {
+  background-color: #0037ce !important;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.input::placeholder {
+  color: rgb(223, 223, 223);
+  font-family: "Poppins" !important;
+}
+
+.submit {
+  background-color: #0037ce !important;
+  padding: 25px 30px;
+  box-shadow: 1px 2px 2px 1px black;
+}
+
+@media (max-width: 380px) {
+  .input,
+  .input::placeholder {
+    font-size: 12px;
+  }
+}

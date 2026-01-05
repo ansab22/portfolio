@@ -1,0 +1,80 @@
+.header_main {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.header_back {
+  background-color: transparent !important;
+  margin: 0 !important;
+}
+
+.scrolled {
+  background: #1a0b3c; /* Your preferred color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo,
+.logo:focus {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.logo:hover {
+  color: #dd2a24;
+  transition: all 0.3s;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.menu_links {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu_links:hover {
+  color: #dd2a24;
+  transition: all 0.3s;
+}
+
+.icon {
+  filter: invert(1) !important; /* Turns black to white */
+}
+
+.offcanvas-header .btn-close {
+  filter: invert(1); /* Changes black to white */
+}
+
+@media (max-width: 1030px) {
+  .logo {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 770px) {
+  .offcanvas_body {
+    background-color: rgb(34, 33, 33) !important;
+    color: white;
+  }
+}
+
+@media (max-width: 430px) {
+  .header_main {
+    display: flex;
+    justify-content: end;
+  }
+  .logo {
+    display: none;
+  }
+}
