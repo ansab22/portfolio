@@ -2,29 +2,29 @@ import React from "react";
 import styles from "./testimonial.module.css";
 import Image from "next/image";
 import Client1 from "../../../public/Images/client1.png";
-import Client2 from "../../../public/Images/client2.png";
-import Client3 from "../../../public/Images/client3.png";
+import Client2 from "../../../public/Images/client2.jpg";
+import Client3 from "../../../public/Images/client3.jpeg";
 import { Row, Col } from "antd";
 import { MdOutlineRateReview } from "react-icons/md";
 
 function Testimonial() {
   const testimonials = [
     {
-      name: "Hiroshi Murakami",
+      name: "Daniel",
       position: "Project Manager, TechSolutions",
       description:
         "Ansab is a highly skilled developer with a versatile background in front-end and back-end development. His attention to detail, clean coding practices, and timely delivery make him a dependable collaborator on any project. I highly recommend him for web and app development projects!",
       image: Client1,
     },
     {
-      name: "Ghias Ali",
-      position: "CTO, Trisage Solutions",
+      name: "Kellay",
+      position: "CTO, eworks Digital",
       description:
         "Working with Ansab has been an excellent experience! His expertise in Laravel, React, and modern web technologies, coupled with his dedication to quality, ensures every project exceeds expectations. A professional and reliable developer I would gladly work with again.",
       image: Client2,
     },
     {
-      name: "Ethan Walker",
+      name: "Chris",
       position: "Lead Designer,, TechNova",
       description:
         "Ansab demonstrates exceptional technical skills and problem-solving ability. From complex backend logic to polished frontend interfaces, his work is always top-notch. He is highly recommended for any development work requiring precision and creativity.",
