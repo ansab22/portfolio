@@ -615,7 +615,7 @@ ol {
 }
 
 .hero__name {
-  font-size: clamp(2.2rem, 5.6vw, 3.9rem);
+  font-size: clamp(1.8rem, 5.6vw, 3.9rem);
   line-height: 1.05;
   margin: 4px 0 14px;
   max-width: 100%;
