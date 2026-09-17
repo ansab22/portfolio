@@ -1,40 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Muhammad Ansab — Portfolio
 
-## Getting Started
+A React + Vite portfolio site, built to deploy on Vercel.
 
-First, run the development server:
+## Edit your content
+
+Almost everything on the site (name, bio, skills, experience, projects, contact links)
+lives in one file: `src/data.js`. Open it and edit the text directly — no need to touch
+any component files unless you want to change layout.
+
+To swap the profile photo, replace `src/assets/profile.jpg` with your own image
+(keep the same filename, or update the import in `src/components/Hero.jsx`).
+
+Contact section: update `contact.email`, `contact.upwork`, and `contact.fiverr` in
+`src/data.js` with your real email and profile links.
+
+## Set up the contact form (required — one-time, 1 minute)
+
+The contact form sends messages straight to your inbox with no backend or
+database, using a free service called Web3Forms:
+
+1. Go to https://web3forms.com
+2. Enter your email — `muhammadansab210@gmail.com` — and click "Create Access Key".
+3. Web3Forms emails you an **access key** immediately (no account/signup needed).
+4. Open `src/data.js`, find `web3formsAccessKey`, and paste your key in place of
+   `'YOUR_WEB3FORMS_ACCESS_KEY'`.
+5. That's it. Every form submission on your site will now land directly in your
+   Gmail inbox as an email, with the sender's name, email, and message.
+
+Until you add the key, the form will show a friendly error asking people to
+email you directly instead — so don't skip this step before deploying.
+
+## Run it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This starts a local dev server (usually at http://localhost:5173).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Deploy to Vercel
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Option A — with the Vercel CLI**
+1. Install the CLI once: `npm install -g vercel`
+2. From this project folder, run: `vercel`
+3. Follow the prompts (log in / create account if needed, accept the defaults —
+   Vercel auto-detects Vite).
+4. Run `vercel --prod` to push it live.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+**Option B — with GitHub (recommended for ongoing updates)**
+1. Push this project to a new GitHub repository.
+2. Go to https://vercel.com and sign in (GitHub login is easiest).
+3. Click "Add New… → Project", then import your GitHub repo.
+4. Vercel will auto-detect the Vite framework preset — Build Command `vite build`,
+   Output Directory `dist`. Leave these as-is.
+5. Click "Deploy". Your site will be live at a `*.vercel.app` URL in about a minute.
+6. Every time you push to your GitHub repo's main branch afterward, Vercel
+   redeploys automatically.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Once deployed, you can add a custom domain from the Vercel dashboard under
+Project → Settings → Domains.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```
+src/
+  assets/
+    profile.jpg           — your headshot
+    projects/              — full-page screenshots used in the project cards
+    certs/                 — certificate image
+  components/              — one component per section
+  data.js                  — all site content + the Web3Forms access key
+  App.jsx                  — assembles the sections
+  index.css                — full design system and styles
+```
