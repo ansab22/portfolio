@@ -1,25 +1,19 @@
 import { useState } from 'react'
 import { contact } from '../data'
-import { MeshBackdrop } from './Decor'
+import Icon from './Icons'
+import Reveal from './Reveal'
 
-const initialForm = { name: '', email: '', message: '' }
+const initialForm = { name: '', email: '', need: 'AI automation', message: '' }
+const NEEDS = ['AI automation', 'New website', 'Web app', 'Fix / improve my site', 'Not sure yet']
 
 export default function Contact() {
   const [form, setForm] = useState(initialForm)
-  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [status, setStatus] = useState('idle')
 
-  function handleChange(e) {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
-  }
+  const change = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  async function handleSubmit(e) {
+  async function submit(e) {
     e.preventDefault()
-
-    if (!contact.web3formsAccessKey || contact.web3formsAccessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-      setStatus('error')
-      return
-    }
-
     setStatus('sending')
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -27,121 +21,52 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: contact.web3formsAccessKey,
-          subject: `New portfolio inquiry from ${form.name}`,
+          subject: `New portfolio inquiry (${form.need}) from ${form.name}`,
           from_name: form.name,
           ...form,
         }),
       })
       const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        setForm(initialForm)
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
+      if (data.success) { setStatus('success'); setForm(initialForm) } else setStatus('error')
+    } catch { setStatus('error') }
   }
 
   return (
     <section id="contact" className="section section--contact">
-      <MeshBackdrop variant="gold" count={14} seed={9} />
       <div className="section__inner contact">
-        <div className="contact__intro">
-          <p className="section__label">Contact</p>
+        <Reveal className="contact__intro" from="left">
+          <p className="eyebrow">Contact</p>
           <h2>{contact.heading}</h2>
           <p className="contact__body">{contact.body}</p>
-
+          <a href={`mailto:${contact.email}`} className="contact__mail"><Icon name="mail" /> {contact.email}</a>
           <div className="contact__links">
-            <a href={`mailto:${contact.email}`} className="contact__link">
-              <span className="contact__link-icon">✉</span> {contact.email}
-            </a>
+            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="pill pill--link">LinkedIn ↗</a>
+            <a href={contact.upwork} target="_blank" rel="noopener noreferrer" className="pill pill--link">Upwork ↗</a>
           </div>
+        </Reveal>
 
-          <div className="contact__platforms">
-            <a
-              href={contact.upwork}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="platform-pill platform-pill--upwork"
-            >
-              <span className="platform-pill__badge">U</span>
-              <span className="platform-pill__text">
-                <strong>Upwork</strong>
-                <small>View my freelancer profile ↗</small>
-              </span>
-            </a>
-            <a
-              href={contact.fiverr}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="platform-pill platform-pill--fiverr"
-            >
-              <span className="platform-pill__badge">F</span>
-              <span className="platform-pill__text">
-                <strong>Fiverr</strong>
-                <small>View my gig profile ↗</small>
-              </span>
-            </a>
+        <Reveal as="form" className="card contact-form" onSubmit={submit} from="right">
+          <div className="terminal__bar terminal__bar--form">
+            <span className="terminal__dot terminal__dot--r" /><span className="terminal__dot terminal__dot--y" /><span className="terminal__dot terminal__dot--g" />
+            <span className="terminal__title">Start a project</span>
           </div>
-        </div>
-
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="contact-form__row">
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Your name"
-            />
+          <div className="contact-form__grid">
+            <label>Name<input name="name" required value={form.name} onChange={change} placeholder="Your name" /></label>
+            <label>Email<input name="email" type="email" required value={form.email} onChange={change} placeholder="you@company.com" /></label>
           </div>
-
-          <div className="contact-form__row">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={form.email}
-              onChange={handleChange}
-              placeholder="you@example.com"
-            />
+          <div className="contact-form__needs" role="radiogroup" aria-label="What do you need?">
+            {NEEDS.map((n) => (
+              <button type="button" key={n} className={`pill pill--choice ${form.need === n ? 'is-on' : ''}`}
+                aria-pressed={form.need === n} onClick={() => setForm((f) => ({ ...f, need: n }))}>{n}</button>
+            ))}
           </div>
-
-          <div className="contact-form__row">
-            <label htmlFor="message">Project details</label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={5}
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Tell me a bit about what you need built…"
-            />
-          </div>
-
-          <button type="submit" className="btn btn--primary" disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending…' : 'Send message'}
+          <label>Tell me about your project<textarea name="message" required rows={5} value={form.message} onChange={change} placeholder="Tell me what you want to build or automate…" /></label>
+          <button type="submit" className="btn btn--primary btn--block" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send message →'}
           </button>
-
-          {status === 'success' && (
-            <p className="contact-form__note contact-form__note--success">
-              Message sent — I'll reply by email shortly.
-            </p>
-          )}
-          {status === 'error' && (
-            <p className="contact-form__note contact-form__note--error">
-              Something went wrong. Please email me directly at {contact.email}.
-            </p>
-          )}
-        </form>
+          {status === 'success' && <p className="form-note form-note--ok">✓ Message sent. I'll reply by email within 24 hours.</p>}
+          {status === 'error' && <p className="form-note form-note--err">Something went wrong. Please email me at {contact.email}.</p>}
+        </Reveal>
       </div>
     </section>
   )

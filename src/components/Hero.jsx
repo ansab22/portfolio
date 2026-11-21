@@ -1,46 +1,43 @@
 import profileImg from '../assets/profile.jpg'
-import { profile } from '../data'
-import { NetworkGlobe } from './Decor'
-import { TypedName } from './TypedName'
+import { profile, terminalRun } from '../data'
+import TypedRoles from './TypedRoles'
+import Terminal from './Terminal'
+import { ClientsBadge } from './Flags'
 
 export default function Hero() {
   return (
     <section id="top" className="hero">
-      <NetworkGlobe />
       <div className="hero__inner">
         <div className="hero__text">
-          <p className="eyebrow">{profile.experience} experience</p>
-          <h1 className="hero__name" aria-label={profile.name}>
-            <TypedName text={profile.name} />
+          <p className="hero__badge"><span className="pulse" /> Available for new projects</p>
+          <p className="hero__hello">Hi, I'm <strong>{profile.name}</strong></p>
+          <h1 className="hero__title">
+            <span className="grad">{profile.title.split(' & ')[0]}</span>
+            <br />& {profile.title.split(' & ')[1]}
           </h1>
-          <p className="hero__title">
-            {profile.title} <span className="dot">/</span> {profile.subtitle}
+          <p className="hero__typed">
+            <span className="hero__typed-label">I build</span>{' '}
+            <TypedRoles words={profile.roles} />
           </p>
           <p className="hero__tagline">{profile.tagline}</p>
           <div className="hero__actions">
-            <a href="#projects" className="btn btn--primary">
-              See my work
-            </a>
-            <a href="#contact" className="btn btn--ghost">
-              Get in touch
-            </a>
+            <a href="#contact" className="btn btn--primary">Book a free call</a>
+            <a href="#projects" className="btn btn--ghost">See my work</a>
           </div>
+          <ClientsBadge />
         </div>
 
-        <div className="hero__visual hero__visual--solo">
-          <div className="photo-orbit">
-            <span className="photo-orbit__ring photo-orbit__ring--1" />
-            <span className="photo-orbit__ring photo-orbit__ring--2" />
-            <span className="photo-orbit__ring photo-orbit__ring--3" />
-            <div className="photo-orbit__inner">
-              <img src={profileImg} alt={`Portrait of ${profile.name}`} />
-            </div>
-            <span className="photo-orbit__badge">
-              <span className="photo-orbit__badge-dot" /> Available for work
-            </span>
+        <div className="hero__visual">
+          <div className="hero__photo">
+            <img src={profileImg} alt={`Portrait of ${profile.name}`} />
+            <span className="hero__photo-ring" />
           </div>
+          <Terminal lines={terminalRun} />
+          <div className="chip chip--1"><span>⚡</span> Reply in 14s</div>
+          <div className="chip chip--2"><span>🤖</span> AI agent</div>
         </div>
       </div>
+      <a href="#services" className="hero__scroll" aria-label="Scroll down"><span /></a>
     </section>
   )
 }

@@ -1,19 +1,39 @@
-import { experience, projects, certifications, profile } from '../data'
+import { useEffect, useState } from 'react'
+import useInView from './useInView'
 
-const stats = [
-  { value: profile.experience.split(' ')[0], label: 'Years of experience' },
-  { value: `${projects.length}`, label: 'Featured projects' },
-  { value: `${experience.length}`, label: 'Companies worked with' },
-  { value: `${certifications[0]?.detail.match(/^\d+%/)?.[0] ?? '100%'}`, label: 'Certification score' },
+const STATS = [
+  { to: 5, suffix: '+', label: 'Years building for the web' },
+  { to: 24, suffix: '/7', label: 'Automations work while you sleep' },
+  { to: 20000, suffix: '+', label: 'Images cleaned on one live site' },
+  { to: 100, suffix: '%', label: 'WordPress expert certification score' },
 ]
 
+function Counter({ to, suffix, run }) {
+  const [v, setV] = useState(0)
+  useEffect(() => {
+    if (!run) return
+    let raf
+    const start = performance.now()
+    const dur = 1400
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1)
+      setV(Math.round(to * (1 - Math.pow(1 - p, 3))))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [run, to])
+  return <>{v.toLocaleString()}{suffix}</>
+}
+
 export default function Stats() {
+  const [ref, inView] = useInView()
   return (
-    <section className="stats">
+    <section className="stats" ref={ref}>
       <div className="stats__inner">
-        {stats.map((s) => (
-          <div className="stats__item" key={s.label}>
-            <span className="stats__value">{s.value}</span>
+        {STATS.map((s, i) => (
+          <div className={`stats__item reveal reveal--up ${inView ? 'is-in' : ''}`} style={{ transitionDelay: `${i * 90}ms` }} key={s.label}>
+            <span className="stats__value"><Counter {...s} run={inView} /></span>
             <span className="stats__label">{s.label}</span>
           </div>
         ))}

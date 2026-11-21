@@ -1,32 +1,41 @@
-import { about } from '../data'
-import { MeshBackdrop } from './Decor'
+import { about, profile } from '../data'
+import Reveal from './Reveal'
+import SectionHead from './SectionHead'
 
 const INTRO_VIDEO_ID = '4GO7DFhKkNU'
 
+const FACTS = [
+  { k: 'Experience', v: '5+ years' },
+  { k: 'Clients in', v: 'USA, UK & Europe' },
+  { k: 'Time zones', v: 'Overlap with US & UK hours' },
+  { k: 'Replies', v: 'Within 24 hours' },
+  { k: 'Status', v: 'Available for new projects', ok: true },
+]
+
 export default function About() {
   return (
-    <section id="about" className="section section--tint-blue">
-      <MeshBackdrop variant="blue" count={16} seed={4} />
+    <section id="about" className="section">
       <div className="section__inner about">
         <div className="about__side">
-          <div className="section__heading">
-            <p className="section__label">About</p>
-            <h2>Five years of shipping software that survives real traffic and real deadlines</h2>
-          </div>
-          <div className="about__highlight">
-            <span className="about__highlight-value">20,000+</span>
-            <span className="about__highlight-label">
-              unmanaged images cleaned up with a custom-built solution on one production site
-            </span>
-          </div>
+          <SectionHead label="About me" title="Your developer for websites and smart automation" />
+          <Reveal className="card facts" from="left">
+            <p className="facts__title">Quick facts</p>
+            <dl>
+              {FACTS.map((f) => (
+                <div className="facts__row" key={f.k}>
+                  <dt>{f.k}</dt>
+                  <dd className={f.ok ? 'is-ok' : ''}>{f.ok && <span className="pulse" />}{f.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
         <div className="about__body">
           {about.paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
+            <Reveal key={i} delay={i * 100}><p>{p}</p></Reveal>
           ))}
-
-          <div className="about__video">
-            <p className="about__video-label">Watch a quick introduction</p>
+          <Reveal className="about__video" delay={200}>
+            <p className="about__video-label">▶ Watch a short introduction from {profile.name.split(' ')[1]}</p>
             <div className="about__video-frame">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${INTRO_VIDEO_ID}`}
@@ -36,7 +45,7 @@ export default function About() {
                 allowFullScreen
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

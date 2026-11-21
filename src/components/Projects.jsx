@@ -1,68 +1,47 @@
 import { projects } from '../data'
+import Reveal from './Reveal'
+import SectionHead from './SectionHead'
 
-function siteLabel(url) {
-  try {
-    return new URL(url).hostname.replace('www.', '')
-  } catch {
-    return url
-  }
-}
+const host = (u) => { try { return new URL(u).hostname.replace('www.', '') } catch { return u } }
 
-// Assumed rendered card width used to translate aspectRatio into a hover
-// scroll distance. It's an approximation (actual card width is responsive)
-// but gives a consistent, natural-feeling "scroll through the page" reveal.
-const ASSUMED_CARD_WIDTH = 480
-const PREVIEW_HEIGHT = 260
-
-function scrollPercent(aspectRatio) {
-  const imageHeight = ASSUMED_CARD_WIDTH * aspectRatio
-  const ratio = Math.min(PREVIEW_HEIGHT / imageHeight, 1)
-  return -(1 - ratio) * 100
-}
+// Translate the screenshot's aspect ratio into how far it scrolls on hover.
+const CARD_W = 480
+const PREVIEW_H = 260
+const scrollEnd = (ar) => -(1 - Math.min(PREVIEW_H / (CARD_W * ar), 1)) * 100
 
 export default function Projects() {
   return (
-    <section id="projects" className="section section--tint-gold">
+    <section id="projects" className="section section--alt">
       <div className="section__inner">
-        <div className="section__heading">
-          <p className="section__label">Projects</p>
-          <h2>Selected work</h2>
-        </div>
-
-        <div className="projects-grid">
-          {projects.map((project) => (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card"
-              key={project.name}
-              style={{ '--scroll-end': `${scrollPercent(project.aspectRatio)}%` }}
-            >
-              <div className="project-card__browser">
-                <div className="project-card__dots">
-                  <span /> <span /> <span />
+        <SectionHead
+          label="My work"
+          title="Selected work"
+          text="Real, live websites I built for clients. Click any project to visit the site."
+          center
+        />
+        <div className="projects">
+          {projects.map((p, i) => (
+            <Reveal key={p.name} delay={(i % 2) * 140} from={i % 2 ? 'right' : 'left'}>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="card project"
+                style={{ '--scroll-end': `${scrollEnd(p.aspectRatio)}%` }}>
+                <div className="project__browser">
+                  <span /><span /><span />
+                  <div className="project__url">https://{host(p.url)}</div>
                 </div>
-                <div className="project-card__url">{siteLabel(project.url)}</div>
-              </div>
-
-              <div className="project-card__shot">
-                <img src={project.image} alt={`${project.name} homepage`} loading="lazy" />
-                <span className="project-card__hint">Hover to scroll the page ↓</span>
-              </div>
-
-              <div className="project-card__body">
-                <h3>{project.name}</h3>
-                <p className="project-card__type">{project.type}</p>
-                <p className="project-card__desc">{project.description}</p>
-                <div className="project-card__tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                  ))}
+                <div className="project__shot">
+                  <img src={p.image} alt={`${p.name} homepage`} loading="lazy" />
                 </div>
-                <span className="project-card__link">Visit site ↗</span>
-              </div>
-            </a>
+                <div className="project__body">
+                  <p className="project__type">{p.type}</p>
+                  <h3>{p.name}</h3>
+                  <p className="project__desc">{p.description}</p>
+                  <div className="project__foot">
+                    <div className="pills">{p.tags.map((t) => <span className="pill pill--sm" key={t}>{t}</span>)}</div>
+                    <span className="project__link">Visit ↗</span>
+                  </div>
+                </div>
+              </a>
+            </Reveal>
           ))}
         </div>
       </div>

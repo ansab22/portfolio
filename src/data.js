@@ -8,83 +8,175 @@ import certificateImg from "./assets/certs/wordpress-certificate.jpg";
 
 export const profile = {
   name: "Muhammad Ansab",
-  title: "Expert WordPress & Laravel Developer",
-  subtitle: "Turning ideas into fast, secure, revenue-ready products",
-  location: "Pakistan",
+  title: "AI Automation & Full Stack Developer",
+  // Rotating words in the hero ("I build ___")
+  roles: [
+    "AI agents that reply to leads in seconds",
+    "automations that kill manual work",
+    "fast WordPress websites",
+    "Laravel & React web apps",
+  ],
+  location: "Working with US, UK & EU clients",
   experience: "5+ Years",
   tagline:
-    "I build WordPress sites and Laravel applications that survive contact with real traffic, real content, and real deadlines.",
+    "I help businesses stop losing leads and hours. I build fast websites and web apps, then connect them to AI automations that reply, follow up, book and report on their own.",
 };
+
+// "Terminal" lines that type out in the hero, like an automation running live.
+export const terminalRun = [
+  { type: "cmd", text: "run lead-automation --client dental-clinic" },
+  { type: "log", text: "› New lead captured from website form" },
+  { type: "log", text: "› AI agent qualified lead: \"teeth whitening\"" },
+  { type: "ok", text: "✓ SMS + email reply sent in 14s" },
+  { type: "ok", text: "✓ Booking link sent · slot reserved Tue 10:30" },
+  { type: "ok", text: "✓ Lead saved to CRM + Google Sheet" },
+  { type: "muted", text: "// 0 minutes of manual work" },
+];
+
+export const services = [
+  {
+    icon: "bot",
+    title: "AI Automation & Agents",
+    text: "AI agents and workflows that answer new leads instantly, follow up, book appointments and update your CRM, 24/7.",
+    points: [
+      "Instant lead reply (form, missed call, DM)",
+      "AI chat assistants for your website",
+      "Follow-up & reminder sequences",
+      "CRM, Google Sheets & email integrations",
+    ],
+  },
+  {
+    icon: "globe",
+    title: "Websites that convert",
+    text: "Fast, mobile-first WordPress websites built to turn visitors into calls, bookings and sales.",
+    points: [
+      "Custom WordPress themes & plugins",
+      "WooCommerce stores",
+      "Landing pages with lead capture",
+      "Speed, security & SEO basics",
+    ],
+  },
+  {
+    icon: "code",
+    title: "Custom Web Apps",
+    text: "Laravel and React/Next.js applications built around how your business actually runs.",
+    points: [
+      "Dashboards & client portals",
+      "Stripe subscriptions & payments",
+      "REST APIs & third-party integrations",
+      "Deployment on any hosting (cPanel, hPanel, VPS)",
+    ],
+  },
+];
+
+// The animated "how an automation works" flow.
+export const flow = [
+  { icon: "inbox", title: "Lead comes in", text: "Website form, missed call, Instagram or Facebook DM" },
+  { icon: "bot", title: "AI qualifies", text: "Reads the message and understands what they need" },
+  { icon: "send", title: "Instant reply", text: "Personal SMS or email in seconds, not hours" },
+  { icon: "calendar", title: "Booked", text: "Booking link sent and the appointment lands in your calendar" },
+  { icon: "chart", title: "Tracked", text: "Everything saved to your CRM or sheet, with follow-ups if they go quiet" },
+];
+
+export const industries = [
+  { title: "Dental clinics", text: "Missed-call text-back, online booking, recall reminders and review requests." },
+  { title: "Real estate agents", text: "Speed-to-lead replies, listing pages and open-house follow-ups." },
+  { title: "Local service businesses", text: "Quote requests answered instantly and jobs booked without phone tag." },
+];
 
 export const about = {
   paragraphs: [
-    "I'm a WordPress and Laravel developer with 5+ years of experience building custom, high-performance websites and web applications for clients across the US and internationally.",
-    "On WordPress, I go past basic customization. I build custom themes, plugins, and WooCommerce stores, and fix the performance and security problems that actually threaten a live site on one project, I resolved a major slowdown caused by 20,000+ unmanaged images by engineering a custom cleanup solution from scratch.",
-    "On Laravel, I build web applications from the ground up: dashboards, Stripe-powered subscriptions, REST APIs, and custom platforms built around how a specific business actually operates.",
+    "I'm a full stack developer with 5+ years of experience building websites and web applications for clients in the US and internationally. Today I focus on one thing: helping businesses get more from their website by connecting it to AI automation.",
+    "On the web side I build custom WordPress themes, plugins and WooCommerce stores, and Laravel and React/Next.js applications: dashboards, Stripe subscriptions and REST APIs. On one production site I solved a major slowdown caused by 20,000+ unmanaged images with a custom cleanup plugin built from scratch.",
+    "On the automation side I build AI agents and workflows that reply to leads, follow up, book appointments and keep records up to date, so owners spend their time on clients, not admin.",
   ],
 };
 
 export const skills = [
   {
-    category: "WordPress",
+    category: "AI Automation",
+    icon: "bot",
     items: [
-      "Custom WordPress Themes",
-      "WordPress Plugin Development",
+      "AI Agents & Chatbots",
+      "Workflow Automation",
+      "OpenAI / Claude APIs",
+      "Lead Follow-up Systems",
+      "Webhooks & API Integrations",
+      "CRM & Google Sheets",
+    ],
+  },
+  {
+    category: "WordPress",
+    icon: "globe",
+    items: [
+      "Custom Themes & Plugins",
       "WooCommerce",
       "Elementor",
-      "WordPress Security",
-      "WordPress Performance Optimization",
-      "WordPress Migration",
-      "WordPress Bug Fixing",
+      "Performance & Security",
+      "Migrations & Bug Fixing",
     ],
   },
   {
     category: "Backend",
-    items: ["Laravel", "PHP", "MySQL", "REST APIs", "Node.js"],
+    icon: "server",
+    items: ["Laravel", "PHP", "Node.js", "MySQL", "REST APIs", "HubSpot"],
   },
   {
     category: "Frontend",
-    items: ["JavaScript", "React", "Next.js", "Vue.js"],
+    icon: "code",
+    items: ["JavaScript", "React", "Next.js", "Vue.js", "Tailwind CSS"],
   },
 ];
 
 export const experience = [
   {
-    role: "Laravel & WordPress Developer",
-    company: "Coduko",
-    period: "March 2025 — April 2026",
+    role: "WordPress Developer",
+    company: "Dream Warrior Group",
+    meta: "US digital agency · Remote",
+    period: "2026 — Present",
+    current: true,
     points: [
-      "Worked remotely across both Laravel and WordPress projects.",
-      "Built and deployed a 3D room-design platform allowing users to build a virtual room and upload/place 3D furniture models to design their space interactively.",
-      "Delivered substantial development work on a finance-focused web application.",
+      "Build, maintain and QA WordPress sites for US arts and performing-arts organizations, many hosted on WP Engine.",
+      "Fixed a major slowdown on a site with 20,000+ images by building a custom cleanup plugin that keeps featured images safe.",
+      "Handle PHP and WordPress upgrades on staging first, then live, with zero downtime for the client.",
     ],
   },
   {
-    role: "WordPress Developer",
-    company: "Dream Warrior Group",
-    period: "December 2023 — March 2025",
+    role: "Full Stack Developer (Laravel, WordPress & HubSpot)",
+    company: "Coduko",
+    meta: "Remote",
+    period: "Mar 2024 — Dec 2025",
     points: [
-      "Diagnosed and fixed a major performance issue on a site carrying 20,000+ images.",
-      "Built a custom plugin to safely clean up unused post images without breaking images used elsewhere as featured images.",
-      "Built custom WordPress themes and plugins tailored to specific site requirements.",
+      "Built and deployed a 3D room-design platform in Laravel where users design a virtual room and place 3D furniture models.",
+      "Delivered major development work on a finance-focused web application.",
+      "Worked across Laravel, WordPress and HubSpot projects for international clients.",
     ],
   },
   {
     role: "Laravel & WordPress Developer",
     company: "Trisage Solutions",
-    period: "October 2021 — November 2023",
+    meta: "US company · On-site",
+    period: "2021 — Feb 2024",
     points: [
-      "Worked on Laravel and WordPress projects for this US-based company, handling full web solutions for clients.",
-      "Built and deployed a complete web solution for a Nevada-based client, including a responsive UI in Laravel.",
+      "Built and deployed a complete web solution for a Nevada-based client, including a responsive Laravel UI.",
       "Optimized backend performance and database queries.",
+      "Handled full WordPress and Laravel builds for the company's clients.",
     ],
   },
 ];
 
+// "Why work with me" badges shown in the Experience section.
+export const promises = [
+  { title: "On-time delivery", text: "We agree on clear deadlines before we start, and I deliver on them. No chasing, no surprises." },
+  { title: "Clear communication", text: "Regular updates in plain English, so you always know what's done and what's next." },
+  { title: "Tested before launch", text: "Every page is checked on desktop, tablet and mobile before it goes live." },
+  { title: "Support after launch", text: "Once your site is live I'm still here for fixes, changes and improvements." },
+];
+
 export const otherExperience = {
-  title: "MERN Stack & Vue.js Development",
+  title: "Freelance & personal projects",
   description:
-    "Alongside my main WordPress and Laravel work, I have also worked with the MERN stack (MongoDB, Express, React, Node.js) on select projects, and done hands-on work with Vue.js building dynamic frontend components.",
+    "Business websites for US small businesses, the Available Traders platform (Laravel, Stripe subscriptions, role-based dashboards), a \"Wanted\" Chrome extension for saving e-commerce products, and an advent-calendar game in JavaScript + Laravel.",
 };
 
 // aspectRatio = image height / image width — used to drive the hover-scroll preview.
@@ -94,37 +186,37 @@ export const projects = [
     type: "WordPress Booking Website",
     url: "https://vamosday.com/",
     description:
-      "A complete WordPress build for a city tour and activity booking platform: a search-and-book flow with activity/duration filters, multi-city destination pages, dynamic pricing display, and testimonial sections.",
+      "City tour and activity booking platform: search-and-book flow with filters, multi-city destination pages, dynamic pricing and testimonials.",
     tags: ["WordPress", "Booking Flow", "Multi-city"],
     image: vamosdayShot,
     aspectRatio: 3.356,
   },
   {
     name: "Shafi Sons Electronics",
-    type: "WordPress WooCommerce Store",
+    type: "WooCommerce Store",
     url: "https://shafisonselectronics.pk/",
     description:
-      "A WooCommerce store built from scratch for an electronics retailer, with full product catalog management across multiple categories, category-based navigation, pricing/discount display, and a trending/top-sellers section.",
+      "E-commerce store built from scratch for an electronics retailer: full catalog across categories, discounts and a trending / top-sellers section.",
     tags: ["WooCommerce", "E-commerce", "PHP"],
     image: shafisonsShot,
     aspectRatio: 3.521,
   },
   {
     name: "Local Cable Provider",
-    type: "WordPress Lead-Gen Website",
+    type: "Lead-Generation Website",
     url: "https://localcableprovider.com/",
     description:
-      "A lead-generation site for a US-based internet & cable comparison service, featuring a ZIP code-based service availability checker, provider comparison sections, and lead-capture forms.",
+      "Lead-gen site for a US internet & cable comparison service, with a ZIP-code availability checker, provider comparisons and lead-capture forms.",
     tags: ["Lead Gen", "WordPress", "US Market"],
     image: localcableShot,
     aspectRatio: 6.042,
   },
   {
     name: "Albora Finance",
-    type: "WordPress Website — Spanish Financial Services",
+    type: "Financial Services Website",
     url: "https://alborafinance.com/",
     description:
-      "A site for a Spanish real-estate-backed financing company, with a multi-step loan inquiry form, detailed conditions/comparison tables, and a bilingual Spanish/English structure.",
+      "Site for a Spanish real-estate-backed lender, with a multi-step loan inquiry form, comparison tables and a bilingual Spanish/English structure.",
     tags: ["Bilingual", "FinTech", "WordPress"],
     image: alboraShot,
     aspectRatio: 5.593,
@@ -150,14 +242,11 @@ export const education = [
 ];
 
 export const contact = {
-  heading: "Let's build something reliable.",
-  body: "Open to WordPress and Laravel projects — from custom theme builds to full web applications. Tell me what you're working on and I'll get back to you.",
+  heading: "Let's automate the busywork.",
+  body: "Need a website that brings in leads, or an AI automation that handles them for you? Tell me what you're working on and I'll reply within 24 hours.",
   email: "muhammadansab210@gmail.com",
   upwork: "https://www.upwork.com/freelancers/~01fddff895bc6d814a?viewMode=1",
-  fiverr: "https://www.fiverr.com/muhammadansab02?public_mode=true",
-  // Get a free access key at https://web3forms.com (takes 10 seconds, no signup —
-  // just enter your email and they send you the key). Paste it below.
-  // Submissions then land straight in muhammadansab210@gmail.com with no
-  // database or backend involved.
+  linkedin: "https://www.linkedin.com/in/muhammad-ansab-022120312/",
+  // Web3Forms key — submissions land in the email above.
   web3formsAccessKey: "baf4148d-218e-4e5f-baa4-637147118960",
 };
